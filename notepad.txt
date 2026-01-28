@@ -1,0 +1,148 @@
+Flask: Creates our web application (backend server)
+requests: Gets data from weather API
+scikit-learn: Machine Learning library for predictions
+pandas: Handles data (like Excel for Python)
+numpy: Mathematical calculations
+python-dotenv: Manages secret keys safely
+
+
+-----------------------------*-------------------------*---------------------
+
+*********---------app.py---------*********
+Lines 1-5: Import libraries we need
+
+Flask: Creates web server
+requests: Gets data from API
+os, dotenv: Reads API key safely
+weather_ml: Our ML predictor (we'll create this next)
+
+Lines 8-10: Load the API key from .env file
+Lines 13-14: Set up Flask app and API settings
+Lines 17-18: Create ML predictor object
+Lines 20-25: Home route - shows the main webpage
+Lines 27-90: Weather route - does the heavy work:
+
+Gets city name from user
+Calls OpenWeatherMap API for current weather
+Gets 7-day forecast
+Processes the data
+Gets ML predictions
+Sends everything back as JSON
+
+Lines 92-94: Runs the server on port 5000
+
+
+*********---------weather_ml-------------**********
+Lines 1-3: Import ML libraries
+Lines 5-14: Create WeatherPredictor class and initialize ML model (Linear Regression)
+Lines 16-24: Function header - explains what it does
+Lines 27-31: Get temperature data and prepare it for ML
+
+Extracts temperatures from forecast
+Creates day numbers (1, 2, 3...)
+
+Lines 33-34: TRAIN THE MODEL - This is where ML happens!
+
+The model learns the pattern from existing temperatures
+
+Lines 36-38: PREDICT FUTURE - Model predicts next 3 days
+Lines 40-52: Analyze the trend:
+
+If temperature is going up → "rising"
+If going down → "falling"
+If stable → "stable"
+
+Lines 54-62: Calculate statistics (average, min, max)
+Lines 64-78: Package everything into a nice dictionary
+Lines 80-90: Error handling - if something goes wrong, return safe default values
+
+
+
+*************-------index.html-------************
+
+Lines 1-9: HTML setup
+
+Links to our CSS file for styling
+Links to Google Fonts for beautiful text
+
+Lines 13-16: Header with title and subtitle
+Lines 19-26: Search box where users type city name
+Lines 29-32: Loading spinner (shows while fetching data)
+Lines 35: Error message area (if something goes wrong)
+Lines 38-69: Current weather display
+
+City name
+Temperature
+Weather icon
+Feels like, humidity, wind, pressure
+
+Lines 72-93: AI Predictions section
+
+Trend indicator (rising/falling/stable)
+Average temperature
+Temperature range
+Future predictions
+
+Lines 96-100: 7-day forecast cards
+Lines 104-106: Footer
+Line 108: Links to our JavaScript file (for interactivity)
+
+
+
+
+***********-------CSS--------*********
+
+WHAT THIS CSS DOES:
+
+Lines 1-14: Basic setup, purple gradient background
+Lines 16-39: Header styling (big title, subtitle)
+Lines 41-89: Search box and button with hover effects
+Lines 91-111: Loading spinner animation
+Lines 113-126: Red error message with shake animation
+Lines 142-221: Current weather card with temperature display
+Lines 223-300: AI predictions card (purple gradient)
+Lines 302-350: 7-day forecast cards
+Lines 352-358: Footer
+Lines 360-397: Smooth fade-in animations
+Lines 399-419: Mobile-friendly responsive design
+
+
+
+
+
+**************----------- JS CODE ------------************
+
+Lines 2-39: getWeather() - Main function that:
+
+Gets city name from input box
+Sends request to Flask backend
+Handles success/errors
+Shows loading spinner
+
+Lines 42-67: displayWeather() - Updates the page with:
+
+City name
+Current temperature
+Weather details (humidity, wind, etc.)
+Weather icon
+
+Lines 70-104: displayPredictions() - Shows AI predictions:
+
+Trend icon (📈 rising, 📉 falling, ➡️ stable)
+Trend message
+Average temperature
+Future 3-day predictions
+
+Lines 107-136: displayForecast() - Creates 7-day forecast cards
+Lines 139-173: Helper functions to show/hide elements
+Lines 176-180: handleKeyPress() - Allows pressing Enter to search
+Lines 183-185: Runs when page loads
+
+
+
+
+
+-------------------------------------------------------
+.env → Won't upload your API key (keeps it secret)
+__pycache__/ → Won't upload Python temporary files
+.vscode/ → Won't upload editor settings
