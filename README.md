@@ -68,7 +68,8 @@ The application uses **Linear Regression** to analyze temperature patterns:
 4. Add: `WEATHER_API_KEY=your_api_key_here`
 
 ## 👨‍💻 Author
-
+**Aryan Mishra**
+- GitHub: [@AryanMishra218](https://github.com/AryanMishra218)
 Built as a learning project to demonstrate:
 - Full-stack web development
 - API integration
